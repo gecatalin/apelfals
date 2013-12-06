@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html ng-app="CallService">
+<head>
+    <title>Cum sa faci o gluma proasta rapid si sigur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/ngProgress.css" rel="stylesheet" />
+    <style>
+       /*modal-backdrop {background: none;}
+*/
+        .mainContainer {
+            max-width: 620px;
+        }
+        body {
+            padding: 30px;
+        }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-resource.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="js/ngProgress.min.js"></script>
+    <script src="js/app.js"></script>
+
+</head>
+<body>
+<div class="container mainContainer">
+
+    <!-- Static navbar -->
+    <div class="jumbotron">
+        <h1>Telefon <span class="text-muted">online</span></h1>
+    </div>
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="container" ng-controller="CallController">
+
+ <form class="form-inline text-center" name="call" ng-submit="make()" ng-show="avaible">
+	
+        <div class="panel panel-default">
+        	<div class="panel-heading"> Din partea cui si pe cine sunam?</div>
+	 <div class="panel-body">
+      
+
+            <div class="form-group" ng-class="{ 'has-success': call.fromInput.$valid,'has-error': call.fromInput.$dirty }">
+                        <input name="fromInput" ng-model="Call.from" ng-maxlength="11" ng-minlength="10" ng-pattern="/^\+?[0-9\-]+\*?$/" type="tel"  class="form-control input-lg" id="fromInput" placeholder="De la:" autofocus required>
+
+            </div>
+
+             <div class="form-group"  ng-class="{'has-success': call.toInput.$valid, 'has-error': call.toInput.$dirty}">
+                <label class="sr-only" for="toInput">Catre:</label>
+                <input name="toInput" id="toInput" ng-maxlength="11" ng-model="Call.to" ng-minlength="10" ng-pattern="/^\+?[0-9\-]+\*?$/" type="tel" class="form-control input-lg" placeholder="Catre:" required>
+            </div>
+     </div>
+            <div class="panel-footer">
+                <div class="btn-group btn-group-xs">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" href="#limitariModal">Limitari</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" href="#despreModal">Despre</button>
+                </div>
+
+            </div>
+    </div>
+          <div class="panel panel-default">
+                <div class="panel-heading">Ce sunet ii redam in telefon?</div>
+	<div class="panel-body pagination-center">
+        <div class="btn-group">
+                <button class="btn btn-success btn-lg" ng-click="Call.tipul=2" type="submit" ng-disabled="!call.$valid || !avaible">Amuzant</button>
+                <button class="btn btn-danger btn-lg" ng-click="Call.tipul=1" type="submit" ng-disabled="!call.$valid || !avaible">Scarbos</button>
+         </div>
+
+
+
+     </div>
+
+
+	</div>
+</form>
+        <blockquote class="pull-right" ng-show="!avaible">
+            <p>Ambition is the immoderate desire for power</p>
+            <small>Baruch Spinoza</small>
+        </blockquote>
+    </div>
+
+</div> <!-- /container -->
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css" rel="stylesheet">
+<div class="modal fade in" id="despreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">#despre</h4>
+            </div>
+            <div class="modal-body">
+                Aplicatia a fost realizata strict in scop educational and 'just for fun'. Folosesc SILEX (server side) si pentru user interface vestitul AngularJS. Forta
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Inchide</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal fade in" id="limitariModal" tabindex="-1" role="dialog" aria-labelledby="myModal2Label" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Ce limite ai?</h4>
+            </div>
+            <div class="modal-body">
+                <p>Pentru ca este un serviciu gratuit, ai dreptul la doar <strong>4</strong> apeluri pe zi. De asemenea esti rugat sa nu folosesti acest
+                    serviciu pentru fraude sau mai stiu eu ce alte rahaturi.</p><br>
+                <p>Imi rezerv dreptu de a inchide oricand serviciul, de a interzice accesul, de a spune tuturor ca tu iti suni gagica ca un disperat si alte inspe mii de drepturi.</p>
+                <br>
+                <p><strong>{{ firstname }}</strong>, stiu ca esti un <strong>obsedat</strong>! Sunt atent la toate apelurile tale. Daca vad ca exagerezi iti tai macaroana!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Inchide</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</body>
+</html>

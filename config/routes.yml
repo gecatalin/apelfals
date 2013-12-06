@@ -1,0 +1,31 @@
+bootstrap:
+  path: /
+  defaults: { _controller: 'Fphone\Controller\MainController::bootstrap' }
+  methods:  [GET,POST]
+bootstrap_app:
+  path: /app
+  defaults: { _controller: 'Fphone\Controller\MainController::bootstrap' }
+  methods:  [GET]
+
+call_add:
+  path: /api/call
+  defaults: {_controller: 'Fphone\Controller\CallController::addCall'}
+  methods: [POST]
+
+#TODO: remove GET PARAMATER !!
+call_inbound:
+  path: /inbound
+  defaults: {_controller: 'Fphone\Controller\MainController::inbound'}
+  methods: [POST]
+
+call_checkCall:
+  path: /api/check
+  defaults: {_controller: 'Fphone\Controller\CallController::checkCall'}
+  methods: [POST]
+
+
+login_check:
+    pattern:   /login_check
+
+login:
+    pattern:   /login
